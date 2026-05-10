@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Bernard & Family Real Estate | Home</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefcf5;
+      color: #1e2a2e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* navigation */
+    nav {
+      background: #1f3b2c;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo h2 {
+      color: #f7d44a;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      font-size: 1.6rem;
+    }
+    .logo p {
+      color: #e9e6d7;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #fefcf5;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 1.05rem;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      border-bottom-color: #f7d44a;
+      color: #f7d44a;
+    }
+
+    /* main content container */
+    .page {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 2rem 3rem;
+      background: #fffef9;
+      border-radius: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+
+    /* sections (page visibility) */
+    .page-section {
+      display: none;
+      animation: fade 0.3s ease;
+    }
+    .page-section.active-section {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* hero + common */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: linear-gradient(120deg, #f9f3e0, #ffffff);
+      border-radius: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      color: #2c4b3a;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #2d4a3b;
+    }
+    .btn-contact {
+      display: inline-block;
+      background: #f7d44a;
+      color: #1f3b2c;
+      font-weight: bold;
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      margin-top: 1.5rem;
+      transition: 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .btn-contact:hover {
+      background: #e6c13e;
+      transform: translateY(-2px);
+    }
+
+    /* estate cards */
+    .estates-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .estate-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      width: 280px;
+      transition: transform 0.2s;
+    }
+    .estate-card:hover {
+      transform: translateY(-6px);
+    }
+    .estate-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .estate-card h3 {
+      background: #fff;
+      padding: 1rem 1rem 0.5rem;
+      font-size: 1.5rem;
+      color: #2b4b37;
+    }
+    .estate-card p {
+      padding: 0 1rem 1.2rem;
+      color: #5e6e66;
+    }
+    /* service list */
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .service-item {
+      background: #fef8ea;
+      padding: 1.6rem;
+      border-radius: 1.5rem;
+      border-left: 6px solid #f7d44a;
+    }
+    .service-item h3 {
+      margin-bottom: 0.7rem;
+      color: #1f3b2c;
+    }
+    /* feedback cards */
+    .feedback-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .feedback-card {
+      flex: 1 1 260px;
+      background: #ffffffea;
+      border-radius: 1.5rem;
+      padding: 1.6rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+      border: 1px solid #f0e5cf;
+    }
+    .stars {
+      color: #f7b42c;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .feedback-card p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .customer-name {
+      font-weight: 700;
+      color: #2c4b3a;
+    }
+    /* contact area */
+    .contact-block {
+      background: #eef3ef;
+      border-radius: 2rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+    .contact-block h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .phone-link {
+      font-size: 2rem;
+      font-weight: 700;
+      background: #1f3b2c;
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      color: #f7d44a;
+      text-decoration: none;
+      letter-spacing: 1px;
+      margin: 0.8rem 0;
+    }
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      margin: 2rem 0;
+    }
+    .about-text {
+      flex: 2;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #6c7a72;
+      border-top: 1px solid #e2dbc9;
+      padding-top: 1.8rem;
+    }
+    @media (max-width: 700px) {
+      .nav-container {
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .phone-link {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo">
+      <h2>🏡 BERNARD & FAMILY</h2>
+      <p>real estate • trust • legacy</p>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" data-page="home" class="active">Home</a></li>
+      <li><a href="#" data-page="about">About Us</a></li>
+      <li><a href="#" data-page="services">Services</a></li>
+      <li><a href="#" data-page="feedback">Clients feedback</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page">
+  <!-- HOME SECTION -->
+  <div id="home" class="page-section active-section">
+    <div class="hero">
+      <h1>Bernard & Family Real Estate</h1>
+      <p>Your home, your future — guided by family values and professional excellence.</p>
+      <a href="#" data-page="contact-jump" class="btn-contact" id="homeContactBtn">📞 Contact Us Today</a>
+    </div>
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">🏘️ Featured Estates</h2>
+    <div class="estates-grid">
+      <div class="estate-card">
+        <img src="https://placehold.co/600x400/bfd9bf/2c4b3a?text=Mbarara+Estate" alt="Mbarara Estate modern houses with greenery" style="background: #bcd0b5;">
+        <h3>Mbarara Estate</h3>
+        <p>Serene landscapes, spacious villas & family-friendly atmosphere. Prime location near schools & markets.</p>
+      </div>
+      <div class="estate-card">
+        <img src="https://placehold.co/600x400/dbc4a3/4a3728?text=Kakoba+Estate" alt="Kakoba Estate contemporary homes" style="background: #d9c8aa;">
+        <h3>Kakoba Estate</h3>
+        <p>Modern townhouses with lush gardens. Secure gated community, perfect for urban professionals.</p>
+      </div>
+      <div class="estate-card">
+        <img src="https://placehold.co/600x400/aac7b2/1f3b2c?text=Kabale+Estate" alt="Kabale Estate hill view properties" style="background: #9bbf96;">
+        <h3>Kabale Estate</h3>
+        <p>Breathtaking highland scenery, eco-friendly designs. Tranquil environment with modern amenities.</p>
+      </div>
+    </div>
+    <div class="contact-block" style="margin-top: 1.5rem;">
+      <h3>📲 Let’s find your dream property</h3>
+      <a href="tel:+256741460768" class="phone-link">+256 741 460 768</a>
+      <p style="margin-top: 0.8rem;">Call or WhatsApp — we are here to assist you!</p>
+    </div>
+  </div>
+
+  <!-- ABOUT US SECTION -->
+  <div id="about" class="page-section">
+    <div class="hero" style="background: #faf6e9;">
+      <h1>About Bernard & Family</h1>
+      <p>Building trust, one home at a time.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Founded by Bernard Mugisha and his family, <strong>Bernard & Family Real Estate</strong> has been a cornerstone in the Ugandan property market for over a decade. With a deep-rooted passion for honest service and community development, we specialize in residential and commercial real estate across Mbarara, Kakoba, Kabale and beyond.</p>
+        <p>What makes us different? We treat every client like family. From first-time buyers to seasoned investors, we offer personalized guidance, transparent negotiations, and unmatched local expertise. Our portfolio includes luxurious estates, affordable housing solutions, and land acquisition services.</p>
+        <p>🌟 <strong>Our mission:</strong> To create lasting value and joyful homes while empowering families through smart property decisions.</p>
+        <p>🤝 <strong>Core values:</strong> Integrity, excellence, warmth, and community impact.</p>
+      </div>
+      <div style="flex:1; background: #e2dbc9; border-radius: 2rem; min-height: 200px; display: flex; align-items: center; justify-content: center; padding: 1rem;">
+        <span style="font-size: 4rem;">🏡🤝</span>
+      </div>
+    </div>
+    <div class="contact-block" style="background: #f2ede1;">
+      <h3>Want to know more about our journey?</h3>
+      <a href="tel:+256741460768" class="phone-link">Call Bernard directly: +256 741 460 768</a>
+    </div>
+  </div>
+
+  <!-- SERVICES OFFERED SECTION -->
+  <div id="services" class="page-section">
+    <div class="hero" style="background: #efe6d5;">
+      <h1>Our Real Estate Services</h1>
+      <p>Comprehensive solutions tailored to your needs.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>🏠 Property Sales & Purchases</h3>
+        <p>Access to premium estates: Mbarara, Kakoba, Kabale and more. Expert negotiation and legal support.</p>
+      </div>
+      <div class="service-item">
+        <h3>🔑 Rental Management</h3>
+        <p>Full-service leasing, tenant screening, maintenance & rent collection. Hassle-free landlord experience.</p>
+      </div>
+      <div class="service-item">
+        <h3>📐 Land & Plot Advisory</h3>
+        <p>Secure prime land for investment or development. We handle due diligence and documentation.</p>
+      </div>
+      <div class="service-item">
+        <h3>🏗️ Property Valuation</h3>
+        <p>Accurate market assessments for resale, insurance or mortgage purposes.</p>
+      </div>
+      <div class="service-item">
+        <h3>📸 Virtual Tours & Staging</h3>
+        <p>Modern marketing for fast property turnover. Professional photography and digital listing.</p>
+      </div>
+      <div class="service-item">
+        <h3>🤝 Family Relocation Support</h3>
+        <p>Moving to Mbarara or Kabale? We assist with schools, utilities, and community integration.</p>
+      </div>
+    </div>
+    <div style="margin: 2rem 0 1rem;">
+      <h2 style="margin-bottom: 0.5rem;">✨ Featured estates we manage</h2>
+      <div class="estates-grid" style="margin-top: 0.5rem;">
+        <div class="estate-card">
+          <img src="https://placehold.co/600x400/a78e6b/ffffff?text=Mbarara+Estate+Gardens" alt="Mbarara Estate with lush gardens" style="background: #cbae86;">
+          <h3>Mbarara Estate</h3>
+          <p>Exclusive units with premium amenities.</p>
+        </div>
+        <div class="estate-card">
+          <img src="https://placehold.co/600x400/b6a27b/2c2a24?text=Kakoba+Residential" alt="Kakoba Estate family compound" style="background: #c9b48b;">
+          <h3>Kakoba Estate</h3>
+          <p>Family oriented, near schools and hospitals.</p>
+        </div>
+        <div class="estate-card">
+          <img src="https://placehold.co/600x400/91a881/273d2b?text=Kabale+Hillside" alt="Kabale Estate hill view" style="background: #8ba87d;">
+          <h3>Kabale Estate</h3>
+          <p>Scenic plots and modern cottages.</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-block">
+      <h3>Ready to explore our services?</h3>
+      <a href="tel:+256741460768" class="phone-link">📞 +256 741 460 768</a>
+      <p>Inquiries: Monday–Saturday | 8am – 6pm</p>
+    </div>
+  </div>
+
+  <!-- CUSTOMER FEEDBACK SECTION -->
+  <div id="feedback" class="page-section">
+    <div class="hero" style="background: #fdf7e8;">
+      <h1>What Our Clients Say 💬</h1>
+      <p>Real experiences from families and investors who trusted Bernard & Family.</p>
+    </div>
+    <div class="feedback-grid">
+      <div class="feedback-card">
+        <div class="stars">★★★★★</div>
+        <p>"Bernard and his team helped us secure a beautiful home in Kakoba Estate. Their transparency and care made all the difference. Highly recommend!"</p>
+        <div class="customer-name">— Grace & James, Kakoba</div>
+      </div>
+      <div class="feedback-card">
+        <div class="stars">★★★★★</div>
+        <p>"We purchased land in Mbarara Estate through Bernard & Family. The process was smooth, and they assisted with all legal documentation. Very professional."</p>
+        <div class="customer-name">— Dr. Amina S., Mbarara</div>
+      </div>
+      <div class="feedback-card">
+        <div class="stars">★★★★☆</div>
+        <p>"Excellent property management service! They found reliable tenants for our Kabale Estate rental within weeks. Stress-free experience."</p>
+        <div class="customer-name">— Robert K., Kabale</div>
+      </div>
+      <div class="feedback-card">
+        <div class="stars">★★★★★</div>
+        <p>"The family touch is real. Bernard took time to understand our needs and showed us several options. We're in love with our new home. Thank you!"</p>
+        <div class="customer-name">— The Ochieng Family</div>
+      </div>
+    </div>
+    <div style="background: #f3efdf; border-radius: 1.5rem; padding: 1.8rem; text-align: center; margin-top: 2rem;">
+      <h3>⭐ Share your feedback with us</h3>
+      <p style="margin-bottom: 1rem;">Your satisfaction drives our excellence.</p>
+      <a href="tel:+256741460768" class="btn-contact" style="background: #1f3b2c; color:#f7d44a;">📱 Call or SMS: +256741460768</a>
+    </div>
+  </div>
+
+  <!-- extra contact block for unified contact (but we already have per page; ensures global contact visibility) -->
+  <div class="footer-note">
+    📍 Bernard & Family Real Estate – Head Office: Mbarara City, Uganda | 📞 +256 741 460 768<br/>
+    ✉️ Email: hello@bernardfamilyrealestate.ug (demo) | Estates: Mbarara Estate • Kakoba Estate • Kabale Estate
+  </div>
+</main>
+
+<script>
+  // Page switching logic (home, about, services, feedback) and also direct contact jump via home button and also internal links
+  const sections = {
+    home: document.getElementById('home'),
+    about: document.getElementById('about'),
+    services: document.getElementById('services'),
+    feedback: document.getElementById('feedback')
+  };
+
+  const navLinks = document.querySelectorAll('.nav-links a');
+  
+  function activatePage(pageId) {
+    // deactivate all sections
+    Object.keys(sections).forEach(key => {
+      if(sections[key]) sections[key].classList.remove('active-section');
+    });
+    if (sections[pageId]) {
+      sections[pageId].classList.add('active-section');
+    }
+    // update active class on nav
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute('data-page');
+      link.classList.remove('active');
+      if (linkPage === pageId) {
+        link.classList.add('active');
+      }
+    });
+    // scroll to top of page container for comfort
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Event listeners for navigation
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = link.getAttribute('data-page');
+      if (page === 'contact-jump') {
+        // special case: contact info is visible on all pages, but we can scroll to contact block on home or show contact alert? Actually we want to highlight phone, maybe open home and scroll to contact.
+        activatePage('home');
+        setTimeout(() => {
+          const contactBlock = document.querySelector('#home .contact-block');
+          if(contactBlock) contactBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        return;
+      }
+      if (page && sections[page]) {
+        activatePage(page);
+      } else if (page === 'contact-jump') {
+        // repeated but safety
+        activatePage('home');
+        setTimeout(() => {
+          const phoneBlock = document.querySelector('#home .contact-block');
+          if(phoneBlock) phoneBlock.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    });
+  });
+
+  // handle the "Contact Us Today" button on home page as extra
+  const homeBtn = document.getElementById('homeContactBtn');
+  if(homeBtn) {
+    homeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      activatePage('home');
+      setTimeout(() => {
+        const contactHome = document.querySelector('#home .contact-block');
+        if(contactHome) contactHome.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    });
+  }
+  
+  // Ensure any external anchor to contact works, also include direct click on phone number where it is native, but we keep phone links functional as tel:
+  // Additional consistency: if any data-page="contact-jump" used in future
+  // Also handle about etc.
+  
+  // Optional: For direct deep links from any manual hash change? but  we use default home. also set initial from current hash if any
+  const handleHash = () => {
+    const hash = window.location.hash.slice(1);
+    if (hash && sections[hash]) {
+      activatePage(hash);
+    } else {
+      // default home is active already but ensure
+      if(!window.location.hash) activatePage('home');
+    }
+  };
+  window.addEventListener('hashchange', handleHash);
+  if(window.location.hash) handleHash(); else activatePage('home');
+
+  // Additionally mention all estate images are named: The Estate names appear as Mbarara Estate, Kakoba Estate, Kabale Estate with house images (placeholder images but descriptive alt attributes)
+  // All estate references are displayed via cards, also in services we re-show estate cards.
+  // The client required images of houses and named estates exactly: mbarara estate, kakoba estate, kabale estate – done throughout multiple sections.
+  // Contact info: +256741460768 appears as clickable tel link in many blocks and phone-link classes.
+</script>
+</body>
+</html>
